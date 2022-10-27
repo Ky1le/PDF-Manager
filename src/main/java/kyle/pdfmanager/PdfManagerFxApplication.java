@@ -3,15 +3,12 @@ package kyle.pdfmanager;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import kyle.pdfmanager.components.window.WindowPane;
+import kyle.pdfmanager.holder.StageHolder;
 import kyle.pdfmanager.properties.WindowProperties;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.ApplicationContextInitializer;
-import org.springframework.context.ApplicationEvent;
-import org.springframework.context.ApplicationListener;
-import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.*;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
@@ -61,16 +58,23 @@ class StageReadyEvent extends ApplicationEvent {
 class StageInitializer implements ApplicationListener<StageReadyEvent> {
 
     private final WindowProperties windowProperties;
+    private final StageHolder stageHolder;
+    private final ApplicationContext applicationContext;
 
-    public StageInitializer(@NonNull final WindowProperties windowProperties) {
+    public StageInitializer(@NonNull final WindowProperties windowProperties,
+                            @NonNull final StageHolder stageHolder,
+                            @NonNull final ApplicationContext applicationContext) {
         this.windowProperties = windowProperties;
+        this.stageHolder = stageHolder;
+        this.applicationContext = applicationContext;
     }
 
     @Override
     public void onApplicationEvent(StageReadyEvent event) {
         final Stage stage = event.getStage();
-        final BorderPane borderPane = new BorderPane();
-        Scene scene = new Scene(borderPane, windowProperties.getWidth(), windowProperties.getHeight());
+        stageHolder.setStage(stage);
+        final WindowPane windowPane = applicationContext.getBean(WindowPane.class);
+        Scene scene = new Scene(windowPane, windowProperties.getWidth(), windowProperties.getHeight());
         stage.setScene(scene);
         stage.setTitle(windowProperties.getTitle());
         stage.show();

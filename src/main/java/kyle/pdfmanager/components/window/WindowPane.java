@@ -26,7 +26,7 @@ public class WindowPane extends BorderPane {
 
     @Override
     public String getUserAgentStylesheet() {
-        return StyleConstants.WINDOW_STYLE_CLASS;
+        return StyleConstants.WINDOW_STYLE_RESOURCE;
     }
 
     private void createWindowBar() {

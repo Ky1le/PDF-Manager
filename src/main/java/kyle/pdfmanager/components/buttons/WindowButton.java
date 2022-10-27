@@ -21,6 +21,6 @@ public abstract class WindowButton extends Button {
 
     @Override
     public String getUserAgentStylesheet() {
-        return StyleConstants.WINDOW_STYLE_CLASS;
+        return StyleConstants.WINDOW_STYLE_RESOURCE;
     }
 }

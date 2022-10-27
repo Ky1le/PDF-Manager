@@ -45,7 +45,7 @@ public class WindowBarPane extends Pane {
 
     @Override
     public String getUserAgentStylesheet() {
-        return StyleConstants.WINDOW_STYLE_CLASS;
+        return StyleConstants.WINDOW_STYLE_RESOURCE;
     }
 
     private void createItems() {
@@ -56,7 +56,6 @@ public class WindowBarPane extends Pane {
         final Button exitButton = applicationContext.getBean(ExitButton.class);
         buttonContainer.getChildren().addAll(minimizeButton, exitButton);
         getChildren().add(buttonContainer);
-        System.out.println(exitButton.getHeight());
     }
 
     private void createMovable() {

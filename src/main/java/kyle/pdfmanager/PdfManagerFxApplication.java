@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import kyle.pdfmanager.components.itemlist.ItemList;
 import kyle.pdfmanager.components.window.WindowPane;
 import kyle.pdfmanager.holder.StageHolder;
 import kyle.pdfmanager.properties.WindowProperties;
@@ -74,6 +75,8 @@ class StageInitializer implements ApplicationListener<StageReadyEvent> {
         final Stage stage = event.getStage();
         stageHolder.setStage(stage);
         final WindowPane windowPane = applicationContext.getBean(WindowPane.class);
+        final ItemList itemList = applicationContext.getBean(ItemList.class);
+        windowPane.setLeft(itemList);
         Scene scene = new Scene(windowPane, windowProperties.getWidth(), windowProperties.getHeight());
         stage.setScene(scene);
         stage.setTitle(windowProperties.getTitle());

@@ -1,0 +1,33 @@
+@import url(Base.css)
+
+.item {
+    -fx-background-color: -fx-color-secondary;
+    -fx-background-radius: 0px 50px 50px 0px;
+    -fx-opacity: 0.5;
+
+    -fx-font-size: 30px;
+    -fx-font-color: -fx-color-font-secondary;
+
+    -fx-effect: dropshadow(three-pass-box, -fx-color-primary-dark, 10, 0, 0, 2);
+}
+
+.item:hover {
+    -fx-background-color: -fx-color-secondary-light;
+    -fx-background-radius: 0px 50px 50px 0px;
+    -fx-opacity: 0.5;
+
+    -fx-font-size: 30px;
+    -fx-font-color: -fx-color-font-secondary;
+
+    -fx-effect: dropshadow(three-pass-box, -fx-color-primary-dark, 10, 0, 0, 2);
+}
+
+.item:picked {
+    -fx-background-color: -fx-color-secondary-light;
+    -fx-background-radius: 0px 50px 50px 0px;
+
+    -fx-font-size: 30px;
+    -fx-font-color: -fx-color-font-secondary;
+
+    -fx-effect: dropshadow(three-pass-box, -fx-color-primary-dark, 10, 0, 0, 2);
+}

@@ -7,4 +7,5 @@ public class StyleConstants {
      */
     public static String STYLE_FOLDER = "/styles";
     public static String WINDOW_STYLE_RESOURCE = STYLE_FOLDER + "/Window.css";
+    public static String ITEM_STYLE_RESOURCE = STYLE_FOLDER + "/Item.css";
 }

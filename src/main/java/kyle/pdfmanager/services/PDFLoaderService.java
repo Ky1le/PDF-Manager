@@ -3,6 +3,7 @@ package kyle.pdfmanager.services;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import kyle.pdfmanager.model.PDDocumentWrapper;
+import kyle.pdfmanager.model.PDPreviewImage;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class PDFLoaderService {
@@ -20,9 +22,12 @@ public class PDFLoaderService {
     private final Logger LOGGER = LoggerFactory.getLogger(PDFLoaderService.class);
 
     private final FileChooser fileChooser;
+    private final PDFPreviewImageService pdfPreviewImageService;
 
-    public PDFLoaderService(@NonNull final FileChooser fileChooser) {
+    public PDFLoaderService(@NonNull final FileChooser fileChooser,
+                            @NonNull final PDFPreviewImageService pdfPreviewImageService) {
         this.fileChooser = fileChooser;
+        this.pdfPreviewImageService = pdfPreviewImageService;
     }
 
     /**
@@ -30,6 +35,7 @@ public class PDFLoaderService {
      *
      * @return the PDF file as a PDDocumentWrapper
      * @throws IOException when the PDDocument could not be loaded
+     * @see PDFPreviewImageService#convertToPreviewImage(PDDocumentWrapper)
      */
     @Nullable
     public PDDocumentWrapper load() throws IOException {
@@ -40,7 +46,10 @@ public class PDFLoaderService {
         }
         final PDDocument pdDocument = PDDocument.load(file);
         final String fileName = sanitizeFileName(file.getName());
-        return new PDDocumentWrapper(fileName, file.getPath(), pdDocument);
+        final PDDocumentWrapper wrapper = new PDDocumentWrapper(fileName, file.getPath(), pdDocument);
+        final List<PDPreviewImage> previewImages = pdfPreviewImageService.convertToPreviewImage(wrapper);
+        wrapper.getPreviewImages().addAll(previewImages);
+        return wrapper;
     }
 
     /**

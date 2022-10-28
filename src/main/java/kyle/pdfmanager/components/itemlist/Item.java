@@ -8,7 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import kyle.pdfmanager.constants.GlyphFontFamilyConstants;
 import kyle.pdfmanager.constants.StyleConstants;
-import kyle.pdfmanager.model.PDDocumentWrapper;
+import kyle.pdfmanager.models.PDDocumentWrapper;
 import kyle.pdfmanager.services.PDFLoaderService;
 import org.controlsfx.glyphfont.Glyph;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;

@@ -1,4 +1,4 @@
-package kyle.pdfmanager.model;
+package kyle.pdfmanager.models;
 
 import javafx.scene.image.Image;
 import lombok.Getter;

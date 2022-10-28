@@ -3,7 +3,6 @@ package kyle.pdfmanager.components.buttons;
 import kyle.pdfmanager.components.itemlist.ItemInformationPane;
 import kyle.pdfmanager.components.preview.PreviewGrid;
 import kyle.pdfmanager.constants.GlyphFontFamilyConstants;
-import org.controlsfx.control.GridView;
 import org.controlsfx.glyphfont.Glyph;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;

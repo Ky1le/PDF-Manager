@@ -5,7 +5,7 @@ import javafx.css.PseudoClass;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import kyle.pdfmanager.constants.StyleConstants;
-import kyle.pdfmanager.model.PDPreviewImage;
+import kyle.pdfmanager.models.PDPreviewImage;
 import lombok.Getter;
 
 import java.util.UUID;

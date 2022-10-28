@@ -1,7 +1,7 @@
 package kyle.pdfmanager.services;
 
-import kyle.pdfmanager.model.PDDocumentWrapper;
-import kyle.pdfmanager.model.PDPreviewImage;
+import kyle.pdfmanager.models.PDDocumentWrapper;
+import kyle.pdfmanager.models.PDPreviewImage;
 import lombok.NoArgsConstructor;
 import org.apache.pdfbox.rendering.PDFRenderer;
 import org.springframework.stereotype.Service;

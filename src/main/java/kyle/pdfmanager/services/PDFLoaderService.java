@@ -2,8 +2,8 @@ package kyle.pdfmanager.services;
 
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import kyle.pdfmanager.model.PDDocumentWrapper;
-import kyle.pdfmanager.model.PDPreviewImage;
+import kyle.pdfmanager.models.PDDocumentWrapper;
+import kyle.pdfmanager.models.PDPreviewImage;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.slf4j.Logger;

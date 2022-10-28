@@ -1,4 +1,4 @@
-package kyle.pdfmanager.model;
+package kyle.pdfmanager.models;
 
 import lombok.Data;
 import org.apache.pdfbox.pdmodel.PDDocument;

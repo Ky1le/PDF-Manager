@@ -1,15 +1,10 @@
 package kyle.pdfmanager.components.preview;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.util.Callback;
 import kyle.pdfmanager.components.itemlist.Item;
 import kyle.pdfmanager.components.itemlist.ItemList;
 import kyle.pdfmanager.constants.StyleConstants;
-import kyle.pdfmanager.model.PDDocumentWrapper;
-import org.controlsfx.control.GridCell;
+import kyle.pdfmanager.models.PDDocumentWrapper;
 import org.controlsfx.control.GridView;
-import org.controlsfx.control.cell.ImageGridCell;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 

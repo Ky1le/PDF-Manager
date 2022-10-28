@@ -1,14 +1,23 @@
 @import url(Base.css)
 
 .item {
-    -fx-background-color: -fx-color-secondary;
+    -fx-background-color: -fx-color-primary-dark;
     -fx-background-radius: 0px 50px 50px 0px;
     -fx-opacity: 0.5;
 
     -fx-font-size: 30px;
-    -fx-font-color: -fx-color-font-secondary;
+    -fx-text-fill: -fx-color-secondary;
 
     -fx-effect: dropshadow(three-pass-box, -fx-color-primary-dark, 10, 0, 0, 2);
+}
+
+.item > .label {
+    -fx-text-fill: -fx-color-primary-light;
+}
+
+.glyph-font {
+    -fx-text-fill: -fx-color-secondary;
+    -fx-font-size: 20px;
 }
 
 .item:hover {

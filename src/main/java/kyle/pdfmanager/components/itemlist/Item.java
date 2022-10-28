@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.css.PseudoClass;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import kyle.pdfmanager.constants.GlyphFontFamilyConstants;
 import kyle.pdfmanager.constants.StyleConstants;
 import kyle.pdfmanager.model.PDDocumentWrapper;
@@ -28,13 +29,18 @@ public class Item extends HBox {
     private final PDFLoaderService pdfLoaderService;
 
     private final Label label;
+    private final Glyph glyph;
     private final SimpleObjectProperty<PDDocumentWrapper> pdDocumentWrapper;
+    private final ItemInformationPane itemInformationPane;
 
-    public Item(@NonNull final PDFLoaderService pdfLoaderService) {
+    public Item(@NonNull final PDFLoaderService pdfLoaderService,
+                @NonNull final ItemInformationPane itemInformationPane) {
         super();
         this.pdfLoaderService = pdfLoaderService;
         this.pdDocumentWrapper = new SimpleObjectProperty<>();
         this.label = new Label();
+        this.glyph = new Glyph(GlyphFontFamilyConstants.FONT_AWESOME, '\uf1c1').sizeFactor(4);
+        this.itemInformationPane = itemInformationPane;
         createItems();
         applyProperties();
         applyListener();
@@ -63,12 +69,14 @@ public class Item extends HBox {
      */
     private void createItems() {
         label.setText(EMPTY_ITEM_TEXT);
-        final Glyph glyph = new Glyph(GlyphFontFamilyConstants.FONT_AWESOME, '\uf00D').sizeFactor(4);
+        //final Glyph glyph = new Glyph(GlyphFontFamilyConstants.FONT_AWESOME, '\uf00D').sizeFactor(4);
 
         getChildren().addAll(label, glyph);
     }
 
     private void style() {
+        glyph.color(Color.RED);
+        glyph.sizeFactor(2);
         getStyleClass().add(STYLE_CLASS);
         setFocusTraversable(false); //Will be deleted later on
     }
@@ -80,7 +88,7 @@ public class Item extends HBox {
     private void clickable() {
         setOnMousePressed(event -> {
             if(getPseudoClassStates().contains(PICKED)) {
-                final ItemInformationPane itemInformationPane = new ItemInformationPane(pdDocumentWrapper.getValue());
+                //final ItemInformationPane itemInformationPane = new ItemInformationPane(pdDocumentWrapper.getValue());
                 itemInformationPane.show(this);
                 return;
             }
@@ -90,6 +98,7 @@ public class Item extends HBox {
                 if (wrapper != null) {
                     pdDocumentWrapper.setValue(wrapper);
                     pseudoClassStateChanged(PICKED, true);
+                    itemInformationPane.setInformationContent(wrapper);
                 }
             } catch (IOException e) {
                 e.printStackTrace();

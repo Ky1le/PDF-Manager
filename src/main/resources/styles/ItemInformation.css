@@ -1,5 +1,27 @@
 @import url(Base.css)
 
+.popover > .border  {
+    -fx-border-style: none;
+    -fx-padding: 0;
+    -fx-border-width: 0;
+    -fx-opacity: 0.2;
+    -fx-fill: -fx-color-primary-dark;
+}
+
+.label {
+    -fx-text-fill: -fx-color-primary-light;
+    -fx-opacity: 0.2;
+}
+
+.item-information-title {
+    -fx-font-size: 30px;
+    -fx-text-fill: -fx-color-secondary;
+}
+
+.item-information-path {
+    -fx-font-size: 20px;
+}
+
 .item-button {
     -fx-opacity: 0.2;
     -fx-background-color: -fx-color-secondary;

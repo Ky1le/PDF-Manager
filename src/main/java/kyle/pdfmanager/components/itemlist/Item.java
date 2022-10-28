@@ -69,14 +69,12 @@ public class Item extends HBox {
      */
     private void createItems() {
         label.setText(EMPTY_ITEM_TEXT);
-        //final Glyph glyph = new Glyph(GlyphFontFamilyConstants.FONT_AWESOME, '\uf00D').sizeFactor(4);
-
         getChildren().addAll(label, glyph);
     }
 
     private void style() {
         glyph.color(Color.RED);
-        glyph.sizeFactor(2);
+        glyph.sizeFactor(2);    //needs to be removed
         getStyleClass().add(STYLE_CLASS);
         setFocusTraversable(false); //Will be deleted later on
     }
@@ -88,7 +86,6 @@ public class Item extends HBox {
     private void clickable() {
         setOnMousePressed(event -> {
             if(getPseudoClassStates().contains(PICKED)) {
-                //final ItemInformationPane itemInformationPane = new ItemInformationPane(pdDocumentWrapper.getValue());
                 itemInformationPane.show(this);
                 return;
             }

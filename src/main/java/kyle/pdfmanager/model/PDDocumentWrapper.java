@@ -11,6 +11,8 @@ import java.util.UUID;
 @Data
 public class PDDocumentWrapper {
 
+    public static final String PREFIX = ".pdf";
+
     private final UUID uuid;
     private final String fileName;
     private final String filePath;

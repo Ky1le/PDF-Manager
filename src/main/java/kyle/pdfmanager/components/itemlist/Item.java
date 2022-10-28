@@ -14,6 +14,7 @@ import org.controlsfx.glyphfont.Glyph;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -106,6 +107,16 @@ public class Item extends HBox {
     @Override
     public String getUserAgentStylesheet() {
         return StyleConstants.ITEM_STYLE_RESOURCE;
+    }
+
+    @Nullable
+    public PDDocumentWrapper getPDDocumentWrapper() {
+        return pdDocumentWrapper.getValue();
+    }
+
+    @NonNull
+    public SimpleObjectProperty<PDDocumentWrapper> getPDDocumentWrapperProperty() {
+        return pdDocumentWrapper;
     }
 
 }

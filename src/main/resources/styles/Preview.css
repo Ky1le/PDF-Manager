@@ -1,0 +1,15 @@
+@import url(Base.css);
+
+.preview-grid {
+}
+
+.preview-image {
+    -fx-effect: dropshadow(three-pass-box, -fx-color-primary-dark, 10, 0, 0, 0);
+    -fx-opacity: 0.5;
+}
+
+.preview-image:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-opacity: 0.5;
+}

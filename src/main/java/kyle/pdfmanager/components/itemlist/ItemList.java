@@ -2,10 +2,12 @@ package kyle.pdfmanager.components.itemlist;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
-import lombok.Data;
 import org.springframework.context.ApplicationContext;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class ItemList extends VBox {
@@ -20,6 +22,17 @@ public class ItemList extends VBox {
         this.maxItems = 5;
         applyProperties();
         createItems();
+    }
+
+    /**
+     * Returns all Items in the ItemList.
+     *
+     * @return a List with all Items in the list.
+     */
+    @SuppressWarnings("unchecked")
+    public List<Item> getItems() {
+        return (List<Item>)(List<?>) getChildren()
+                .stream().filter(child -> child instanceof Item).collect(Collectors.toList());
     }
 
     private void createItems() {

@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import kyle.pdfmanager.components.itemlist.ItemList;
 import kyle.pdfmanager.components.window.WindowPane;
 import kyle.pdfmanager.holder.StageHolder;
+import kyle.pdfmanager.components.preview.PreviewGrid;
 import kyle.pdfmanager.properties.WindowProperties;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.*;
@@ -77,6 +78,8 @@ class StageInitializer implements ApplicationListener<StageReadyEvent> {
         final WindowPane windowPane = applicationContext.getBean(WindowPane.class);
         final ItemList itemList = applicationContext.getBean(ItemList.class);
         windowPane.setLeft(itemList);
+        final PreviewGrid previewGrid = applicationContext.getBean(PreviewGrid.class);
+        windowPane.setCenter(previewGrid);
         Scene scene = new Scene(windowPane, windowProperties.getWidth(), windowProperties.getHeight());
         stage.setScene(scene);
         stage.setTitle(windowProperties.getTitle());

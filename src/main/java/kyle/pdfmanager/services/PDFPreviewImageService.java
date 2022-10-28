@@ -48,7 +48,7 @@ public class PDFPreviewImageService {
             final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
             final InputStream is = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
-            final PDPreviewImage previewImage = new PDPreviewImage(is, i + 1);
+            final PDPreviewImage previewImage = new PDPreviewImage(wrapper.getUuid(), is, i + 1);
             images.add(previewImage);
         }
 

@@ -13,6 +13,7 @@ import kyle.pdfmanager.components.buttons.ItemDeleteButton;
 import kyle.pdfmanager.components.buttons.ItemHighlightButton;
 import kyle.pdfmanager.constants.StyleConstants;
 import kyle.pdfmanager.model.PDDocumentWrapper;
+import lombok.Getter;
 import org.controlsfx.control.PopOver;
 import org.controlsfx.control.RangeSlider;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -25,6 +26,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@Getter
 public class ItemInformationPane extends PopOver {
 
     private static final String STYLE_CLASS_NAME = "item-information-title";
@@ -35,9 +37,11 @@ public class ItemInformationPane extends PopOver {
     private final RangeSlider rangeSlider;
     private final TextField lowPageNumber;
     private final TextField highPageNumber;
-    private final ItemButton deleteButton;
-    private final ItemButton highlightButton;
-    private final ItemButton changeButton;
+    private final ItemDeleteButton deleteButton;
+    private final ItemHighlightButton highlightButton;
+    private final ItemChangeButton changeButton;
+
+    private PDDocumentWrapper pdDocumentWrapper;
 
     public ItemInformationPane(@NonNull final ItemDeleteButton itemDeleteButton,
                                @NonNull final ItemHighlightButton itemHighlightButton,
@@ -50,6 +54,7 @@ public class ItemInformationPane extends PopOver {
         this.highPageNumber = new TextField();
         this.deleteButton = itemDeleteButton;
         this.highlightButton = itemHighlightButton;
+        this.highlightButton.setInformationPane(this);
         this.changeButton = itemChangeButton;
 
         applyStyle();
@@ -59,10 +64,12 @@ public class ItemInformationPane extends PopOver {
 
     /**
      * Used to provide the information for the Pane.
+     * Stores a reference to the PDF.
      *
      * @param pdDocumentWrapper the wrapper which provides the necessary information.
      */
     public void setInformationContent(final PDDocumentWrapper pdDocumentWrapper) {
+        this.pdDocumentWrapper = pdDocumentWrapper;
         fileName.setText(pdDocumentWrapper.getFileName());
         filePath.setText(pdDocumentWrapper.getFilePath());
         rangeSlider.setMin(1);

@@ -1,0 +1,18 @@
+@import url(Base.css)
+
+.item-button {
+    -fx-opacity: 0.2;
+    -fx-background-color: -fx-color-secondary;
+    -fx-background-radius: 100px 100px 100px 100px;
+    -fx-font-size: 40px;
+}
+
+.item-button:hover {
+    -fx-background-color: -fx-color-secondary-light;
+    -fx-background-radius: 100px 100px 100px 100px;
+    -fx-font-size: 40px;
+}
+
+.text-field {
+    -fx-background-color: transparent;
+}

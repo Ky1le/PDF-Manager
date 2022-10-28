@@ -10,10 +10,14 @@ public class BeanInitializer {
     /**
      * Registers a FileChooser as a bean.
      *
-     * @return the registered FileChosser.
+     * @return the registered FileChooser.
      */
     @Bean
     public FileChooser fileChooser() {
-        return new FileChooser();
+        final FileChooser fileChooser = new FileChooser();
+        final FileChooser.ExtensionFilter pdfExtensionFilter =
+                new FileChooser.ExtensionFilter("PDF(*.pdf)", "*.pdf");
+        fileChooser.getExtensionFilters().add(pdfExtensionFilter);
+        return fileChooser;
     }
 }

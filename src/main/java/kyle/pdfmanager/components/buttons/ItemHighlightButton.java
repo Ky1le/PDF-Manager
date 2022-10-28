@@ -45,6 +45,7 @@ public class ItemHighlightButton extends ItemButton {
         setOnAction(actionEvent -> {
             final UUID uuid = informationPane.getPdDocumentWrapper().getUuid();
             applicationContext.getBean(PreviewGrid.class).highlightPreviewItems(uuid);
+            informationPane.hide();
         });
     }
 

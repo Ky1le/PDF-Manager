@@ -20,7 +20,7 @@ public class ItemHighlightButton extends ItemButton {
     private ItemInformationPane informationPane;
 
     public ItemHighlightButton(@NonNull final ApplicationContext applicationContext) {
-        super(new Glyph(GlyphFontFamilyConstants.FONT_AWESOME, '\ue1af'));
+        super(new Glyph(GlyphFontFamilyConstants.FONT_AWESOME, '\uf06e'));
         this.applicationContext = applicationContext;
 
         clickable();

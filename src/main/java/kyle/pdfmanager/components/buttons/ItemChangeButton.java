@@ -11,6 +11,6 @@ import org.springframework.stereotype.Component;
 public class ItemChangeButton extends ItemButton {
 
     public ItemChangeButton() {
-        super(new Glyph(GlyphFontFamilyConstants.FONT_AWESOME, '\uf363'));
+        super(new Glyph(GlyphFontFamilyConstants.FONT_AWESOME, '\uf021'));
     }
 }

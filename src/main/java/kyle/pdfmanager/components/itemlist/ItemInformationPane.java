@@ -81,8 +81,8 @@ public class ItemInformationPane extends PopOver {
         filePath.setText(pdDocumentWrapper.getFilePath());
         rangeSlider.setMin(1);
         rangeSlider.setMax(pdDocumentWrapper.getPdDocument().getNumberOfPages());
-        //rangeSlider.setLowValue(1.0);
-        //rangeSlider.setHighValue(pdDocumentWrapper.getPdDocument().getNumberOfPages());
+        rangeSlider.setLowValue(1.0);
+        rangeSlider.setHighValue(pdDocumentWrapper.getPdDocument().getNumberOfPages());
     }
 
     private void applyStyle() {
@@ -103,9 +103,11 @@ public class ItemInformationPane extends PopOver {
 
     private void createContents() {
         rangeSlider.setShowTickLabels(true);
-        rangeSlider.setShowTickMarks(true);
-        //rangeSlider.setSnapToTicks(true);
-        //rangeSlider.setBlockIncrement(1.0);
+//        rangeSlider.setShowTickMarks(true);
+        rangeSlider.setSnapToTicks(true);
+        rangeSlider.setMinorTickCount(1);
+        rangeSlider.setMajorTickUnit(2.0);
+//        rangeSlider.setBlockIncrement(1.0);
         final HBox labelBox = new HBox();
         labelBox.getChildren().addAll(lowPageNumber, highPageNumber);
         buttonBox.getChildren().addAll(changeButton, highlightButton, deleteButton);
@@ -122,11 +124,6 @@ public class ItemInformationPane extends PopOver {
         rangeSlider.highValueProperty().addListener((observable, oldValue, newValue) -> {
             final String sliderValue = String.valueOf(newValue);
             highPageNumber.setText(sliderValue);
-        });
-
-        lowPageNumber.textProperty().addListener((observable, oldValue, newValue) -> {
-           final double sliderValue = Double.parseDouble(newValue);
-           rangeSlider.setLowValue(sliderValue);
         });
     }
 

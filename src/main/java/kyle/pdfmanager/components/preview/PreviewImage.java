@@ -4,6 +4,7 @@ import com.sun.javafx.css.PseudoClassState;
 import javafx.css.PseudoClass;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import kyle.pdfmanager.animations.PopUpAnimation;
 import kyle.pdfmanager.constants.StyleConstants;
 import kyle.pdfmanager.models.PDPreviewImage;
 import lombok.Getter;

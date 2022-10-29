@@ -1,6 +1,33 @@
 @import url(Base.css);
 
 .preview-grid {
+    -fx-border-color: white;
+    -fx-border-width: 5px;
+    -fx-border-radius: 10px 10px 10px 10px;
+    -fx-padding: 5px 5px 5px 5px;
+}
+
+.preview-grid .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.preview-grid .scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+.preview-grid .scroll-bar .thumb {
+    -fx-background-color: white;
+    -fx-border-radius: 10px 10px 10px 10px;
+}
+
+.preview-grid .increment-button,
+.preview-grid .decrement-button{
+    -fx-background-color: transparent;
+}
+
+.preview-grid .increment-button .increment-arrow,
+.preview-grid .increment-button .decrement-arrow{
+    -fx-background-color: white;
 }
 
 .preview-image {

@@ -30,12 +30,18 @@ public class ItemInformationPane extends PopOver {
 
     private static final String STYLE_CLASS_NAME = "item-information-title";
     private static final String STYLE_CLASS_PATH = "item-information-path";
+    private static final String STYLE_CLASS_LOW_PAGE_NUMBER = "item-information-low-page-number";
+    private static final String STYLE_CLASS_HIGH_PAGE_NUMBER = "item-information-high-page-number";
+    private static final String STYLE_CLASS_BUTTON_BOX = "item-information-button-box";
+    private static final String STYLE_CLASS_CONTENT_BOX = "item-information-content-box";
 
     private final Label fileName;
     private final Label filePath;
     private final RangeSlider rangeSlider;
     private final TextField lowPageNumber;
     private final TextField highPageNumber;
+    private final VBox contentBox;
+    private final HBox buttonBox;
     private final ItemDeleteButton deleteButton;
     private final ItemHighlightButton highlightButton;
     private final ItemChangeButton changeButton;
@@ -51,6 +57,8 @@ public class ItemInformationPane extends PopOver {
         this.rangeSlider = new RangeSlider();
         this.lowPageNumber = new TextField();
         this.highPageNumber = new TextField();
+        this.contentBox = new VBox();
+        this.buttonBox = new HBox();
         this.deleteButton = itemDeleteButton;
         this.highlightButton = itemHighlightButton;
         this.highlightButton.setInformationPane(this);
@@ -84,8 +92,13 @@ public class ItemInformationPane extends PopOver {
         filePath.getStylesheets().add(StyleConstants.ITEM_INFORMATION_STYLE_RESOURCE);
         filePath.getStyleClass().add(STYLE_CLASS_PATH);
         lowPageNumber.getStylesheets().add(StyleConstants.ITEM_INFORMATION_STYLE_RESOURCE);
+        lowPageNumber.getStyleClass().add(STYLE_CLASS_LOW_PAGE_NUMBER);
         highPageNumber.getStylesheets().add(StyleConstants.ITEM_INFORMATION_STYLE_RESOURCE);
-        System.out.println(lowPageNumber.getStyleClass());
+        highPageNumber.getStyleClass().add(STYLE_CLASS_HIGH_PAGE_NUMBER);
+        buttonBox.getStylesheets().add(StyleConstants.ITEM_INFORMATION_STYLE_RESOURCE);
+        buttonBox.getStyleClass().add(STYLE_CLASS_BUTTON_BOX);
+        contentBox.getStylesheets().add(StyleConstants.ITEM_INFORMATION_STYLE_RESOURCE);
+        contentBox.getStyleClass().add(STYLE_CLASS_CONTENT_BOX);
     }
 
     private void createContents() {
@@ -93,14 +106,11 @@ public class ItemInformationPane extends PopOver {
         rangeSlider.setShowTickMarks(true);
         //rangeSlider.setSnapToTicks(true);
         //rangeSlider.setBlockIncrement(1.0);
-        final VBox vBox = new VBox();
-        final HBox hBox = new HBox();
-        hBox.getChildren().addAll(lowPageNumber, highPageNumber);
-        final HBox buttonBox = new HBox();
-        buttonBox.setAlignment(Pos.CENTER);
+        final HBox labelBox = new HBox();
+        labelBox.getChildren().addAll(lowPageNumber, highPageNumber);
         buttonBox.getChildren().addAll(changeButton, highlightButton, deleteButton);
-        vBox.getChildren().addAll(fileName, filePath, hBox, rangeSlider, buttonBox);
-        setContentNode(vBox);
+        contentBox.getChildren().addAll(fileName, filePath, labelBox, rangeSlider, buttonBox);
+        setContentNode(contentBox);
     }
 
     private void createListeners() {

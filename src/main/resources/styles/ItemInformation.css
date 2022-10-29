@@ -1,16 +1,20 @@
 @import url(Base.css)
 
+{
+    -item-information-opacity: 0.8;
+}
+
 .popover > .border  {
     -fx-border-style: none;
-    -fx-padding: 0;
+    -fx-padding: 0px;
     -fx-border-width: 0;
-    -fx-opacity: 0.2;
+    -fx-opacity: -item-information-opacity;
     -fx-fill: -fx-color-primary-dark;
 }
 
 .label {
     -fx-text-fill: -fx-color-primary-light;
-    -fx-opacity: 0.2;
+    -fx-opacity: -item-information-opacity;
 }
 
 .item-information-title {
@@ -22,19 +26,57 @@
     -fx-font-size: 20px;
 }
 
+.item-information-button-box {
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+}
+
+.item-information-content-box {
+    -fx-padding: 10px 10px 10px 10px;
+}
+
 .item-button {
-    -fx-opacity: 0.2;
+    -fx-opacity: -item-information-opacity;
     -fx-background-color: -fx-color-secondary;
     -fx-background-radius: 100px 100px 100px 100px;
     -fx-font-size: 40px;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-min-width: 60px;
+    -fx-min-height: 60px;
+    -fx-max-width: 60px;
+    -fx-max-height: 60px;
 }
 
 .item-button:hover {
     -fx-background-color: -fx-color-secondary-light;
     -fx-background-radius: 100px 100px 100px 100px;
-    -fx-font-size: 40px;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
 }
 
 .text-field {
     -fx-background-color: transparent;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
+.range-slider {
+    -fx-pref-width: 200px;
+}
+
+.range-slider .track {
+    -fx-background-color: -fx-color-primary-light;
+}
+
+.range-slider .low-thumb {
+    -fx-background-color: -fx-color-primary;
+}
+
+.range-slider .high-thumb {
+    -fx-background-color: -fx-color-primary;
+}
+
+.range-slider .range-bar {
+    -fx-background-color: -fx-color-secondary;
 }

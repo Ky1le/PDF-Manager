@@ -1,6 +1,7 @@
 # Pdf-Manager
+![](images/Banner.png)
 
-A small Application with the purpose to enhance the daily-office-work. The Application provides functionalities
+A small Application with the purpose to enhance my daily-office-work. The Application provides functionalities
 to merge multiple PDFs, as also to remove selected Pages.
 
 # Functionality

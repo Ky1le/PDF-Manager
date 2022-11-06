@@ -59,7 +59,6 @@ public class PreviewGrid extends GridView<PreviewImage> {
      * @param uuid of the PDF which images should be highlighted.
      */
     public void highlightPreviewItems(final UUID uuid) {
-        System.out.println(uuid);
         getItems().forEach(item -> item.setHighlight(item.getPdDocumentWrapperUUID() == uuid));
     }
 

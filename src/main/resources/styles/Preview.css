@@ -1,7 +1,8 @@
 @import url(Base.css);
 
 .preview-grid {
-    -fx-border-color: white;
+    -fx-border-color: -fx-color-primary-dark;
+    -fx-border-style: dashed;
     -fx-border-width: 5px;
     -fx-border-radius: 10px 10px 10px 10px;
     -fx-padding: 5px 5px 5px 5px;

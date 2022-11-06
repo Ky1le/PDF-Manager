@@ -2,10 +2,12 @@ package kyle.pdfmanager.components.preview;
 
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import kyle.pdfmanager.components.buttons.MergeButton;
 import kyle.pdfmanager.components.itemlist.Item;
 import kyle.pdfmanager.components.itemlist.ItemList;
+import kyle.pdfmanager.constants.StyleConstants;
 import kyle.pdfmanager.models.PDDocumentWrapper;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
@@ -19,6 +21,7 @@ public final class PDFMergePreviewGrid extends StackPane {
     private final PreviewGrid previewGrid;
     private final MergeButton mergeButton;
     private final ItemList itemList;
+    private final Label label;
 
     public PDFMergePreviewGrid(@NonNull final PreviewGrid previewGrid,
                                @NonNull final MergeButton mergeButton,
@@ -28,7 +31,9 @@ public final class PDFMergePreviewGrid extends StackPane {
         this.mergeButton = mergeButton;
         this.mergeButton.setPreviewGrid(this);
         this.itemList = itemList;
-        getChildren().addAll(previewGrid, mergeButton);
+        this.label = new Label("No PDFs!");
+        this.label.getStylesheets().add(StyleConstants.PREVIEW_MERGE_STYLE_RESOURCE);
+        getChildren().addAll(previewGrid, label, mergeButton);
         setAlignment(mergeButton, Pos.BOTTOM_RIGHT);
         applyListeners();
     }

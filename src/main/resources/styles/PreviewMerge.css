@@ -1,5 +1,32 @@
 @import url(Base.css)
 
+{
+    -fx-button-size: 60px;
+}
+
 .merge-button {
-    -fx-alignment: right;
+    -fx-opacity: 1.0;
+    -fx-background-color: -fx-color-secondary;
+    -fx-background-radius: 100px 100px 100px 100px;
+    -fx-font-size: 50px;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-min-width: -fx-button-size;
+    -fx-min-height: -fx-button-size;
+    -fx-max-width: -fx-button-size;
+    -fx-max-height: -fx-button-size;
+}
+
+.merge-button:hover {
+    -fx-background-color: -fx-color-secondary-light;
+    -fx-background-radius: 100px 100px 100px 100px;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.label {
+    -fx-text-fill: -fx-color-primary-dark;
+    -fx-font-size: 60px;
+    -fx-alignment: center;
+    -fx-rotate: -45;
 }

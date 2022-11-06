@@ -39,7 +39,7 @@ public class PDDocumentWrapper {
     public void setShownPages(final int min, final int max) {
         for(int i=0; i < previewImages.size(); i++) {
             final PDPreviewImage previewImage = previewImages.get(i);
-            previewImage.setShown(i >= min && i <= max);
+            previewImage.setShown((i+1) >= min && (i+1) <= max);
         }
     }
 }

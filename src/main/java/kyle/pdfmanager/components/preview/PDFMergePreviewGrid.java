@@ -1,5 +1,6 @@
 package kyle.pdfmanager.components.preview;
 
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
 import kyle.pdfmanager.animations.MergeAnimation;
@@ -17,40 +18,20 @@ import java.util.stream.Collectors;
 @Component
 public final class PDFMergePreviewGrid extends StackPane {
 
-    private final PDFMergeService pdfMergeService;
-
     private final PreviewGrid previewGrid;
     private final MergeButton mergeButton;
-    private final ItemList itemList;
 
     public PDFMergePreviewGrid(@NonNull final PreviewGrid previewGrid,
-                               @NonNull final MergeButton mergeButton,
-                               @NonNull final ItemList itemList,
-                               @NonNull final PDFMergeService pdfMergeService) {
+                               @NonNull final MergeButton mergeButton) {
         super();
         this.previewGrid = previewGrid;
         this.mergeButton = mergeButton;
-        this.itemList = itemList;
-        this.pdfMergeService = pdfMergeService;
+        this.mergeButton.setPreviewGrid(this);
         getChildren().addAll(previewGrid, mergeButton);
         setAlignment(mergeButton, Pos.BOTTOM_RIGHT);
-        applyListeners();
     }
 
-    private void applyListeners() {
-        mergeButton.pressedProperty().addListener(event -> {
-            final MergeAnimation mergeAnimation = new MergeAnimation(this.mergeButton)
-                    .addNodes(this.previewGrid.getItems());
-            mergeAnimation.setOnFinished(e -> itemList.clear());
-
-            try {
-                final boolean isMerged = pdfMergeService.merge(this.itemList.getItems().stream().map(Item::getPDDocumentWrapper).filter(Objects::nonNull).collect(Collectors.toList()));
-                if(isMerged) {
-                    mergeAnimation.play();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+    public ObservableList<PreviewImage> getItems() {
+        return this.previewGrid.getItems();
     }
 }

@@ -30,26 +30,16 @@ public class PDDocumentWrapper {
     }
 
     /**
-     * Checks if the Pdf wrapper has any images loaded.
+     * Set the preview images for the PDF.
+     * Pages who are not shown as preview images will be not included in the merged pdf.
      *
-     * @return indicator if the preview Images are loaded.
+     * @param min the min page which should be included.
+     * @param max the max page which should be inlcuded.
      */
-    public boolean hasPreviewImages() {
-        return !previewImages.isEmpty();
-    }
-
-    /**
-     *
-     */
-    //@NonNull
-    public List<Integer> missingPictures() {
-        return null;
-    }
-
-    /**
-     *
-     */
-    public int missingPictureCount() {
-        return missingPictures().size();
+    public void setShownPages(final int min, final int max) {
+        for(int i=0; i < previewImages.size(); i++) {
+            final PDPreviewImage previewImage = previewImages.get(i);
+            previewImage.setShown(i >= min && i <= max);
+        }
     }
 }

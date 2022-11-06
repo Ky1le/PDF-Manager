@@ -1,0 +1,5 @@
+@import url(Base.css)
+
+.merge-button {
+    -fx-alignment: right;
+}

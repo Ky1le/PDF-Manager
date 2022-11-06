@@ -35,6 +35,10 @@ public class ItemList extends VBox {
                 .stream().filter(child -> child instanceof Item).collect(Collectors.toList());
     }
 
+    public void clear() {
+        getChildren().stream().map(Item.class::cast).forEach(item -> item.setPdDocumentWrapper(null));
+    }
+
     private void createItems() {
         for(int i=0;i<maxItems;i++) {
             final Item item = applicationContext.getBean(Item.class);

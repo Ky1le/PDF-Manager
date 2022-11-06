@@ -2,13 +2,10 @@ package kyle.pdfmanager.components.preview;
 
 import kyle.pdfmanager.animations.PopUpAnimation;
 import kyle.pdfmanager.animations.SequentialPopUpAnimation;
-import kyle.pdfmanager.components.itemlist.Item;
-import kyle.pdfmanager.components.itemlist.ItemList;
 import kyle.pdfmanager.constants.StyleConstants;
 import kyle.pdfmanager.models.PDDocumentWrapper;
 import kyle.pdfmanager.models.PDPreviewImage;
 import org.controlsfx.control.GridView;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -21,23 +18,19 @@ public class PreviewGrid extends GridView<PreviewImage> {
 
     private static final String STYLE_CLASS = "preview-grid";
 
-    private final ItemList itemList;
-
-    public PreviewGrid(@NonNull final ItemList itemList) {
-        this.itemList = itemList;
+    public PreviewGrid() {
         setCellFactory(gridView -> new PreviewImageGridCell());
         applyStyle();
-        applyListeners();
     }
 
     /**
-     * Creates and displays the preview images for all pdfs.
-     * Attention: Does not include any page restrictions right now!
+     * Creates and displays the preview images for the given PDFs.
+     * @param wrappers List with all PDFs who should be displayed.
      */
-    public void createPreviewImages() {
+    public void createPreviewImages(final List<PDDocumentWrapper> wrappers) {
         getItems().clear();
         final List<PDDocumentWrapper> pdDocumentWrapperList =
-                this.itemList.getItems().stream().map(Item::getPDDocumentWrapper).filter(Objects::nonNull).collect(Collectors.toList());
+                wrappers.stream().filter(Objects::nonNull).collect(Collectors.toList());
 
         final SequentialPopUpAnimation sequentialPopUpAnimation = new SequentialPopUpAnimation();
         pdDocumentWrapperList.stream()
@@ -64,20 +57,6 @@ public class PreviewGrid extends GridView<PreviewImage> {
 
     private void applyStyle() {
         getStyleClass().add(STYLE_CLASS);
-    }
-
-    private void applyListeners() {
-        this.itemList.getItems().forEach(item -> {
-            item.getPDDocumentWrapperProperty().addListener(listener -> createPreviewImages());
-            item.getHasPreviewChangesProperty().addListener((observable, oldValue, newValue) -> {
-                createPreviewImages();
-                item.getHasPreviewChangesProperty().setValue(false);
-            });
-        });
-
-        this.itemList.getItems().stream()
-                .map(Item::getPDDocumentWrapperProperty)
-                .forEach(wrapperProperty -> wrapperProperty.addListener(listener -> createPreviewImages()));
     }
 
     @Override

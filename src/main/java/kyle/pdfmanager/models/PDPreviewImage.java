@@ -19,5 +19,6 @@ public class PDPreviewImage extends Image {
         super(inputStream);
         this.pdDocumentWrapperUUID = pdDocumentWrapperUUID;
         this.pageNumber = pageNumber;
+        this.isShown = true;
     }
 }

@@ -53,10 +53,14 @@ public class MergeButton extends Button {
             mergeAnimation.setOnFinished(e -> itemList.clear());
 
             try {
-                final boolean isMerged = pdfMergeService.merge(this.itemList.getItems().stream().map(Item::getPDDocumentWrapper).filter(Objects::nonNull).collect(Collectors.toList()));
-                if(isMerged) {
-                    mergeAnimation.play();
-                }
+                final boolean isMerged =
+                        pdfMergeService.merge(
+                            this.itemList.getItems().stream()
+                                .map(Item::getPDDocumentWrapper)
+                                .filter(Objects::nonNull)
+                                .collect(Collectors.toList())
+                        );
+                if(isMerged) mergeAnimation.play();
             } catch (IOException e) {
                 e.printStackTrace();
             }

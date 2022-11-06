@@ -1,6 +1,7 @@
 package kyle.pdfmanager.components.itemlist;
 
 import com.sun.javafx.css.PseudoClassState;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.css.PseudoClass;
 import javafx.scene.control.Label;
@@ -26,13 +27,32 @@ public class Item extends HBox {
     private static final String STYLE_CLASS = "item";
     private static final String EMPTY_ITEM_TEXT = "Click here to pick a pdf";
 
-    private static final PseudoClass PICKED = PseudoClassState.getPseudoClass("picked");
     private final PDFLoaderService pdfLoaderService;
 
     private final Label label;
     private final Glyph glyph;
+
+    /**
+     * State which indicates if the Item has a PDF applied.
+     * @see #clickable
+     * @see StyleConstants#ITEM_STYLE_RESOURCE
+     */
+    private static final PseudoClass PICKED = PseudoClassState.getPseudoClass("picked");
+
+    /**
+     * The PDF which is applied to the item slot.
+     */
     private final SimpleObjectProperty<PDDocumentWrapper> pdDocumentWrapper;
+    /**
+     * Pane which provides the functionalities for the PDF.
+     */
     private final ItemInformationPane itemInformationPane;
+    /**
+     * Property which can be listened to to react on changes on the page numbers.
+     * @see ItemInformationPane
+     * @see kyle.pdfmanager.components.preview.PreviewGrid
+     */
+    private final SimpleBooleanProperty hasPreviewChangesProperty;
 
     public Item(@NonNull final PDFLoaderService pdfLoaderService,
                 @NonNull final ItemInformationPane itemInformationPane) {
@@ -43,6 +63,7 @@ public class Item extends HBox {
         this.glyph = new Glyph(GlyphFontFamilyConstants.FONT_AWESOME, '\uf1c1').sizeFactor(4);
         this.itemInformationPane = itemInformationPane;
         this.itemInformationPane.setItem(this);
+        this.hasPreviewChangesProperty = new SimpleBooleanProperty(false);
         createItems();
         applyProperties();
         applyListener();
@@ -118,6 +139,11 @@ public class Item extends HBox {
     @Nullable
     public PDDocumentWrapper getPDDocumentWrapper() {
         return pdDocumentWrapper.getValue();
+    }
+
+    @NonNull
+    public SimpleBooleanProperty getHasPreviewChangesProperty() {
+           return hasPreviewChangesProperty;
     }
 
     @NonNull

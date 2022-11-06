@@ -27,7 +27,6 @@ public class PreviewGrid extends GridView<PreviewImage> {
         this.itemList = itemList;
         setCellFactory(gridView -> new PreviewImageGridCell());
         applyStyle();
-        applyProperties();
         applyListeners();
     }
 
@@ -35,7 +34,7 @@ public class PreviewGrid extends GridView<PreviewImage> {
      * Creates and displays the preview images for all pdfs.
      * Attention: Does not include any page restrictions right now!
      */
-    private void createPreviewImages() {
+    public void createPreviewImages() {
         getItems().clear();
         final List<PDDocumentWrapper> pdDocumentWrapperList =
                 this.itemList.getItems().stream().map(Item::getPDDocumentWrapper).filter(Objects::nonNull).collect(Collectors.toList());
@@ -43,7 +42,7 @@ public class PreviewGrid extends GridView<PreviewImage> {
         final SequentialPopUpAnimation sequentialPopUpAnimation = new SequentialPopUpAnimation();
         pdDocumentWrapperList.stream()
                 .map(PDDocumentWrapper::getPreviewImages)
-                .forEach(pdPreviewImages -> pdPreviewImages.forEach(pdPreviewImage -> {
+                .forEach(pdPreviewImages -> pdPreviewImages.stream().filter(PDPreviewImage::isShown).forEach(pdPreviewImage -> {
                             final PreviewImage previewImage = new PreviewImage(pdPreviewImage);
                             setCellWidth(pdPreviewImage.getWidth());
                             setCellHeight(pdPreviewImage.getHeight());
@@ -68,12 +67,15 @@ public class PreviewGrid extends GridView<PreviewImage> {
         getStyleClass().add(STYLE_CLASS);
     }
 
-    private void applyProperties() {
-        //setCellHeight(100);
-        //setCellWidth(100);
-    }
-
     private void applyListeners() {
+        this.itemList.getItems().forEach(item -> {
+            item.getPDDocumentWrapperProperty().addListener(listener -> createPreviewImages());
+            item.getHasPreviewChangesProperty().addListener((observable, oldValue, newValue) -> {
+                createPreviewImages();
+                item.getHasPreviewChangesProperty().setValue(false);
+            });
+        });
+
         this.itemList.getItems().stream()
                 .map(Item::getPDDocumentWrapperProperty)
                 .forEach(wrapperProperty -> wrapperProperty.addListener(listener -> createPreviewImages()));

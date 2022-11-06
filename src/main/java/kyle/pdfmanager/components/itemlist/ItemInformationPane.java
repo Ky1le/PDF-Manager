@@ -145,6 +145,7 @@ public class ItemInformationPane extends PopOver {
             final int min = (int)rangeSlider.getLowValue();
             final int max = (int)rangeSlider.getHighValue();
             getPDDocumentWrapper().setShownPages(min, max);
+            item.getHasPreviewChangesProperty().setValue(true);
         });
     }
 

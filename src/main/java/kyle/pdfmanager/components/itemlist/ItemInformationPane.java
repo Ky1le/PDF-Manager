@@ -46,7 +46,7 @@ public class ItemInformationPane extends PopOver {
     private final ItemHighlightButton highlightButton;
     private final ItemChangeButton changeButton;
 
-    private PDDocumentWrapper pdDocumentWrapper;
+    private Item item;
 
     public ItemInformationPane(@NonNull final ItemDeleteButton itemDeleteButton,
                                @NonNull final ItemHighlightButton itemHighlightButton,
@@ -60,9 +60,11 @@ public class ItemInformationPane extends PopOver {
         this.contentBox = new VBox();
         this.buttonBox = new HBox();
         this.deleteButton = itemDeleteButton;
+        this.deleteButton.setInformationPane(this);
         this.highlightButton = itemHighlightButton;
         this.highlightButton.setInformationPane(this);
         this.changeButton = itemChangeButton;
+        this.changeButton.setItemInformationPane(this);
 
         applyStyle();
         createContents();
@@ -76,13 +78,26 @@ public class ItemInformationPane extends PopOver {
      * @param pdDocumentWrapper the wrapper which provides the necessary information.
      */
     public void setInformationContent(final PDDocumentWrapper pdDocumentWrapper) {
-        this.pdDocumentWrapper = pdDocumentWrapper;
-        fileName.setText(pdDocumentWrapper.getFileName());
-        filePath.setText(pdDocumentWrapper.getFilePath());
+        if(item.getPDDocumentWrapper() != pdDocumentWrapper) item.setPdDocumentWrapper(pdDocumentWrapper);
+        if(item.getPDDocumentWrapper() == null) return;
+
+        fileName.setText(item.getPDDocumentWrapper().getFileName());
+        filePath.setText(item.getPDDocumentWrapper().getFilePath());
         rangeSlider.setMin(1);
-        rangeSlider.setMax(pdDocumentWrapper.getPdDocument().getNumberOfPages());
+        rangeSlider.setMax(item.getPDDocumentWrapper().getPdDocument().getNumberOfPages());
         rangeSlider.setLowValue(1.0);
-        rangeSlider.setHighValue(pdDocumentWrapper.getPdDocument().getNumberOfPages());
+        rangeSlider.setHighValue(item.getPDDocumentWrapper().getPdDocument().getNumberOfPages());
+    }
+
+    public void setItem(final Item item) {
+        this.item = item;
+    }
+
+    @NonNull
+    public PDDocumentWrapper getPDDocumentWrapper() {
+        final PDDocumentWrapper wrapper = item.getPDDocumentWrapper();
+        assert wrapper != null;
+        return wrapper;
     }
 
     private void applyStyle() {

@@ -42,12 +42,18 @@ public class Item extends HBox {
         this.label = new Label();
         this.glyph = new Glyph(GlyphFontFamilyConstants.FONT_AWESOME, '\uf1c1').sizeFactor(4);
         this.itemInformationPane = itemInformationPane;
+        this.itemInformationPane.setItem(this);
         createItems();
         applyProperties();
         applyListener();
         style();
 
         clickable();
+    }
+
+    public void setPdDocumentWrapper(@Nullable final PDDocumentWrapper pdDocumentWrapper) {
+        if(pdDocumentWrapper == null) pseudoClassStateChanged(PICKED, false);
+        this.pdDocumentWrapper.setValue(pdDocumentWrapper);
     }
 
     private void applyProperties() {

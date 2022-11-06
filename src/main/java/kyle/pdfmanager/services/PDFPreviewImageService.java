@@ -44,7 +44,7 @@ public class PDFPreviewImageService {
         final List<PDPreviewImage> images = new ArrayList<>(pageCount);
 
         for(int i=0;i<pageCount; i++) {
-            final BufferedImage bufferedImage = renderer.renderImage(0, scale);
+            final BufferedImage bufferedImage = renderer.renderImage(i, scale);
             final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
             final InputStream is = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());

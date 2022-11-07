@@ -33,9 +33,7 @@ public final class PDFMergePreviewGrid extends StackPane {
         this.mergeButton.setPreviewGrid(this);
         this.itemList = itemList;
         this.label = new Label("No PDFs!");
-        this.label.getStylesheets().add(StyleConstants.PREVIEW_MERGE_STYLE_RESOURCE);
-        getChildren().addAll(previewGrid, label, mergeButton);
-        setAlignment(mergeButton, Pos.BOTTOM_RIGHT);
+        style();
         applyListeners();
     }
 
@@ -53,6 +51,12 @@ public final class PDFMergePreviewGrid extends StackPane {
                 itemList.getItems().stream().map(Item::getPDDocumentWrapper).collect(Collectors.toList());
         label.setVisible(wrappers.isEmpty());
         previewGrid.createPreviewImages(wrappers);
+    }
+
+    private void style() {
+        getChildren().addAll(previewGrid, label, mergeButton);
+        setAlignment(mergeButton, Pos.BOTTOM_RIGHT);
+        getStyleClass().add("merge-preview-grid");
     }
 
     private void applyListeners() {
@@ -73,5 +77,10 @@ public final class PDFMergePreviewGrid extends StackPane {
                             .map(Item::getPDDocumentWrapper).filter(Objects::nonNull).count();
                     if(size == 0) label.setVisible(true);
                 }));
+    }
+
+    @Override
+    public String getUserAgentStylesheet() {
+        return StyleConstants.PREVIEW_MERGE_STYLE_RESOURCE;
     }
 }

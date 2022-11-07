@@ -29,6 +29,6 @@
     -fx-rotate: -45;
 }
 
-.stack-pane {
-    -fx-padding: 20px 20px 20px 20px;
+.merge-preview-grid {
+    -fx-padding: 10px 10px 10px 10px;
 }

@@ -1,15 +1,17 @@
 @import url("Base.css")
 
 .window {
-    -fx-background-color: -fx-color-primary;
+    -fx-background-color: linear-gradient(to bottom right, -fx-color-primary, -fx-color-primary-dark);
 }
 
 .window-bar {
     -fx-background-color: -fx-color-primary-dark;
+    -fx-opacity: 0.4;
 }
 
-.window-bar :hover {
+.window-bar:hover {
     -fx-background-color: -fx-color-primary-dark;
+    -fx-opacity: 0.6;
 }
 
 .window-button {

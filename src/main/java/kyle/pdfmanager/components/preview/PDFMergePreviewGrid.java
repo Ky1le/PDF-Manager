@@ -13,6 +13,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
@@ -42,9 +43,15 @@ public final class PDFMergePreviewGrid extends StackPane {
         return this.previewGrid.getItems();
     }
 
+    /**
+     * Creates the preview images for a PDF.
+     * Displays a text if there are no preview images applied.
+     * @see PreviewGrid#createPreviewImages(List)
+     */
     public void createPreviewImages() {
         final List<PDDocumentWrapper> wrappers =
                 itemList.getItems().stream().map(Item::getPDDocumentWrapper).collect(Collectors.toList());
+        label.setVisible(wrappers.isEmpty());
         previewGrid.createPreviewImages(wrappers);
     }
 
@@ -59,6 +66,12 @@ public final class PDFMergePreviewGrid extends StackPane {
 
         this.itemList.getItems().stream()
                 .map(Item::getPDDocumentWrapperProperty)
-                .forEach(wrapperProperty -> wrapperProperty.addListener(listener -> createPreviewImages()));
+                .forEach(wrapperProperty -> wrapperProperty.addListener(listener -> {
+                    createPreviewImages();
+
+                    final long size = itemList.getItems().stream()
+                            .map(Item::getPDDocumentWrapper).filter(Objects::nonNull).count();
+                    if(size == 0) label.setVisible(true);
+                }));
     }
 }

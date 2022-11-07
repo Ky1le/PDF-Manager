@@ -9,8 +9,6 @@
     -fx-background-color: -fx-color-secondary;
     -fx-background-radius: 100px 100px 100px 100px;
     -fx-font-size: 50px;
-    -fx-alignment: center;
-    -fx-text-alignment: center;
     -fx-min-width: -fx-button-size;
     -fx-min-height: -fx-button-size;
     -fx-max-width: -fx-button-size;
@@ -29,4 +27,8 @@
     -fx-font-size: 60px;
     -fx-alignment: center;
     -fx-rotate: -45;
+}
+
+.stack-pane {
+    -fx-padding: 20px 20px 20px 20px;
 }

@@ -2,8 +2,12 @@
 
 {
     -item-information-opacity: 0.8;
-    -item-information-width: 300px;
+    -item-information-width: 600px;
     -fx-item-button-size: 45px;
+}
+
+.popover {
+    -fx-max-width: -item-information-width;
 }
 
 .popover > .border  {

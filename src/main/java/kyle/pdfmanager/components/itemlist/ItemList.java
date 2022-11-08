@@ -2,6 +2,7 @@ package kyle.pdfmanager.components.itemlist;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
+import kyle.pdfmanager.constants.StyleConstants;
 import org.springframework.context.ApplicationContext;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
@@ -20,7 +21,7 @@ public class ItemList extends VBox {
         this.applicationContext = applicationContext;
 
         this.maxItems = 5;
-        applyProperties();
+        style();
         createItems();
     }
 
@@ -46,8 +47,14 @@ public class ItemList extends VBox {
         }
     }
 
-    private void applyProperties() {
-        setAlignment(Pos.CENTER_LEFT);
+    private void style() {
+        getStyleClass().add("item-list");
+        setAlignment(Pos.CENTER);
         setSpacing(20);
+    }
+
+    @Override
+    public String getUserAgentStylesheet() {
+        return StyleConstants.ITEM_LIST_STYLE_RESOURCE;
     }
 }

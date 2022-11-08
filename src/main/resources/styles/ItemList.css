@@ -1,0 +1,11 @@
+@import url(Base.css)
+
+{
+    -fx-item-list-width: 400px;
+}
+
+.item-list {
+    -fx-padding: 10px 10px 10px 10px;
+    -fx-min-width: -fx-item-list-width;
+    -fx-max-width: -fx-item-list-width;
+}

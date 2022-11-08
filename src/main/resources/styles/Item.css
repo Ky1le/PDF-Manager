@@ -2,29 +2,23 @@
 
 .item {
     -fx-background-color: -fx-color-primary-dark;
-    -fx-background-radius: 0px 50px 50px 0px;
     -fx-opacity: 0.5;
-
     -fx-font-size: 30px;
     -fx-text-fill: -fx-color-secondary;
-
+    -fx-padding: 0px 5px 0px 5px;
     -fx-effect: dropshadow(three-pass-box, -fx-color-primary-dark, 10, 0, 0, 2);
 }
 
 .item > .label {
     -fx-text-fill: -fx-color-primary-light;
-}
-
-.glyph-font {
-    -fx-text-fill: -fx-color-secondary;
-    -fx-font-size: 20px;
+    -fx-text-alignment: left;
 }
 
 .item:hover {
     -fx-background-color: -fx-color-secondary-light;
-    -fx-background-radius: 0px 50px 50px 0px;
     -fx-opacity: 0.5;
-
+    -fx-scale-x: 1.025;
+    -fx-scale-y: 1.025;
     -fx-font-size: 30px;
     -fx-font-color: -fx-color-font-secondary;
 
@@ -33,8 +27,6 @@
 
 .item:picked {
     -fx-background-color: -fx-color-secondary-light;
-    -fx-background-radius: 0px 50px 50px 0px;
-
     -fx-font-size: 30px;
     -fx-font-color: -fx-color-font-secondary;
 

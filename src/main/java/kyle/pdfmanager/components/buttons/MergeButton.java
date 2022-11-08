@@ -30,7 +30,8 @@ public class MergeButton extends Button {
 
     public MergeButton(@NonNull final PDFMergeService pdfMergeService,
                        @NonNull final ItemList itemList) {
-        super(StringUtils.EMPTY, new Glyph(GlyphFontFamilyConstants.FONT_AWESOME, '\uf00D'));
+//        super(StringUtils.EMPTY, new Glyph(GlyphFontFamilyConstants.FONT_AWESOME, '\uf24d'));
+        super(StringUtils.EMPTY, new Glyph(GlyphFontFamilyConstants.FONT_AWESOME, '\uf0c5'));
         this.pdfMergeService = pdfMergeService;
         this.itemList = itemList;
         style();

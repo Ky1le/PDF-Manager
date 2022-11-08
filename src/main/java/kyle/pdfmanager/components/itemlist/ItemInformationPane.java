@@ -118,11 +118,9 @@ public class ItemInformationPane extends PopOver {
 
     private void createContents() {
         rangeSlider.setShowTickLabels(true);
-//        rangeSlider.setShowTickMarks(true);
         rangeSlider.setSnapToTicks(true);
         rangeSlider.setMinorTickCount(1);
         rangeSlider.setMajorTickUnit(2.0);
-//        rangeSlider.setBlockIncrement(1.0);
         final HBox labelBox = new HBox();
         labelBox.getChildren().addAll(lowPageNumber, highPageNumber);
         buttonBox.getChildren().addAll(changeButton, highlightButton, deleteButton);
@@ -132,12 +130,14 @@ public class ItemInformationPane extends PopOver {
 
     private void createListeners() {
         rangeSlider.lowValueProperty().addListener((observable, oldValue, newValue) -> {
-            final String sliderValue = String.valueOf(newValue);
+            final int roundedValue = (int) Math.round((Double) newValue);
+            final String sliderValue = String.valueOf(roundedValue);
             lowPageNumber.setText(sliderValue);
         });
 
         rangeSlider.highValueProperty().addListener((observable, oldValue, newValue) -> {
-            final String sliderValue = String.valueOf(newValue);
+            final int roundedValue = (int) Math.round((Double) newValue);
+            final String sliderValue = String.valueOf(roundedValue);
             highPageNumber.setText(sliderValue);
         });
 
@@ -153,13 +153,8 @@ public class ItemInformationPane extends PopOver {
 
 class ItemInformationSkin extends PopOverSkin {
 
-    //private static final String STYLE_CLASS = "item-information";
-
-    private final StackPane skinnableStackPane;
-
     public ItemInformationSkin(final ItemInformationPane informationPane) {
         super(informationPane);
-        this.skinnableStackPane = getSkinnable().getRoot();
-        this.skinnableStackPane.getStylesheets().add(StyleConstants.ITEM_INFORMATION_STYLE_RESOURCE);
+        getSkinnable().getRoot().getStylesheets().add(StyleConstants.ITEM_INFORMATION_STYLE_RESOURCE);
     }
 }

@@ -4,15 +4,20 @@ import com.sun.javafx.css.PseudoClassState;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.css.PseudoClass;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 import kyle.pdfmanager.constants.GlyphFontFamilyConstants;
 import kyle.pdfmanager.constants.StyleConstants;
 import kyle.pdfmanager.models.PDDocumentWrapper;
+import kyle.pdfmanager.properties.ColorPalette;
 import kyle.pdfmanager.services.PDFLoaderService;
 import org.controlsfx.glyphfont.Glyph;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Scope;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
@@ -22,12 +27,14 @@ import java.io.IOException;
 
 @Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@EnableConfigurationProperties(ColorPalette.class)
 public class Item extends HBox {
 
     private static final String STYLE_CLASS = "item";
     private static final String EMPTY_ITEM_TEXT = "Click here to pick a pdf";
 
     private final PDFLoaderService pdfLoaderService;
+    private final ColorPalette colorPalette;
 
     private final Label label;
     private final Glyph glyph;
@@ -55,9 +62,11 @@ public class Item extends HBox {
     private final SimpleBooleanProperty hasPreviewChangesProperty;
 
     public Item(@NonNull final PDFLoaderService pdfLoaderService,
-                @NonNull final ItemInformationPane itemInformationPane) {
+                @NonNull final ItemInformationPane itemInformationPane,
+                @NonNull final ColorPalette colorPalette) {
         super();
         this.pdfLoaderService = pdfLoaderService;
+        this.colorPalette = colorPalette;
         this.pdDocumentWrapper = new SimpleObjectProperty<>();
         this.label = new Label();
         this.glyph = new Glyph(GlyphFontFamilyConstants.FONT_AWESOME, '\uf1c1').sizeFactor(4);
@@ -97,14 +106,20 @@ public class Item extends HBox {
      */
     private void createItems() {
         label.setText(EMPTY_ITEM_TEXT);
+        label.setMaxWidth(Double.MAX_VALUE);
         getChildren().addAll(label, glyph);
+        setHgrow(label, Priority.ALWAYS);
+        setAlignment(Pos.CENTER_RIGHT);
+
+//        glyph.setTranslateX(10);
+//        glyph.setTranslateY(-20);
     }
 
     private void style() {
-        glyph.color(Color.RED);
-        glyph.sizeFactor(2);    //needs to be removed
+        glyph.setColor(Color.RED);
+        glyph.sizeFactor(2);
         getStyleClass().add(STYLE_CLASS);
-        setFocusTraversable(false); //Will be deleted later on
+        setFocusTraversable(false);
     }
 
     /**

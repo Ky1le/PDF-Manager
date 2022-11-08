@@ -117,6 +117,8 @@ public class ItemInformationPane extends PopOver {
     }
 
     private void createContents() {
+        lowPageNumber.setEditable(false);
+        highPageNumber.setEditable(false);
         rangeSlider.setShowTickLabels(true);
         rangeSlider.setSnapToTicks(true);
         rangeSlider.setMinorTickCount(1);

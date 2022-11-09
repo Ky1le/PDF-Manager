@@ -32,7 +32,10 @@
 .item:picked {
     -fx-background-color: -fx-color-secondary-light;
     -fx-font-size: 30px;
-    -fx-font-color: -fx-color-font-secondary;
 
     -fx-effect: dropshadow(three-pass-box, -fx-color-primary-dark, 10, 0, 0, 2);
+}
+
+.item:picked > .label {
+    -fx-text-fill: -fx-color-primary-dark;
 }

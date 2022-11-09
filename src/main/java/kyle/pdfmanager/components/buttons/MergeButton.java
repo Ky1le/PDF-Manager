@@ -1,11 +1,10 @@
 package kyle.pdfmanager.components.buttons;
 
 import javafx.scene.control.Button;
-import kyle.pdfmanager.animations.MergeAnimation;
+import kyle.pdfmanager.animations.SequentialMergeAnimation;
 import kyle.pdfmanager.components.itemlist.Item;
 import kyle.pdfmanager.components.itemlist.ItemList;
 import kyle.pdfmanager.components.preview.PDFMergePreviewGrid;
-import kyle.pdfmanager.components.preview.PreviewGrid;
 import kyle.pdfmanager.constants.GlyphFontFamilyConstants;
 import kyle.pdfmanager.constants.StyleConstants;
 import kyle.pdfmanager.services.PDFMergeService;
@@ -49,9 +48,13 @@ public class MergeButton extends Button {
 
     private void clickable() {
         setOnAction(event -> {
-            final MergeAnimation mergeAnimation = new MergeAnimation(this)
+            final SequentialMergeAnimation sequentialMergeAnimation = new SequentialMergeAnimation(this)
                     .addNodes(this.previewGrid.getItems());
-            mergeAnimation.setOnFinished(e -> itemList.clear());
+            sequentialMergeAnimation.setOnFinished(e -> itemList.clear());
+
+//            final MergeAnimation mergeAnimation = new MergeAnimation(this)
+//                    .addNodes(this.previewGrid.getItems());
+//            mergeAnimation.setOnFinished(e -> itemList.clear());
 
             try {
                 final boolean isMerged =
@@ -61,7 +64,8 @@ public class MergeButton extends Button {
                                 .filter(Objects::nonNull)
                                 .collect(Collectors.toList())
                         );
-                if(isMerged) mergeAnimation.play();
+//                if(isMerged) mergeAnimation.play();
+                if(isMerged) sequentialMergeAnimation.play();
             } catch (IOException e) {
                 e.printStackTrace();
             }

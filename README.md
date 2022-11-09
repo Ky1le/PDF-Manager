@@ -6,16 +6,15 @@ the range of Pages who should be included in the final PDF.
 The final PDF can be previewed.
 
 # Functionality
-__________
 
-<table border="0">
-  <tr style="border:none;">
-  <td style="border:none;" width="50%">
+<table border="10" frame="hsides">
+  <tr>
+  <td width="50%" align="center">
 
   ![](images/Merge.gif)
 
   </td>
-  <td style="border: none;">
+  <td>
   <ul>
   <li>Select up to 5 PDFs.</li>
   <li>Control your current selection through a preview of the final PDF.</li>
@@ -23,18 +22,14 @@ __________
   </ul>
   </td>
   </tr>
-</table>
 
-__________
-
-<table border="0">
-  <tr style="border:none;">
-  <td style="border:none;" width="50%">
+  <tr>
+  <td width="50%" align="center">
 
 ![](images/Pdf-Information.png)
 
   </td>
-  <td style="border: none;">
+  <td>
   <ul>
   <li>Granular definition of the pages who should be included.</li>
   <li>Delete or switch the currently selected PDF</li>
@@ -46,7 +41,6 @@ __________
 
 # Technologie
 
-__________
 The Application was build with Spring Boot, JavaFX and the library PDFBox.
 The Spring Boot project included its core module, as also the dependency Lombok.
 The components were created with the help of JavaFX and its additional library ControlsFX.
@@ -54,7 +48,7 @@ Due to incompatibilities between ControlsFX and SceneBuilder were all components
 Lastly was the library PDFBox from Apache used to read, alter and save the PDF(s).
 
 # Future Improvements
-__________
+
 The future progress for the project can be divided into two parts. Work that could be done to improve the current state,
 as well as new features.
 
@@ -74,7 +68,7 @@ as well as new features.
 
     
 # References
-__________
+
 - Spring Boot and JavaFX setup:
   
   https://spring.io/blog/2019/01/16/spring-tips-javafx

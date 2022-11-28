@@ -1,9 +1,8 @@
 ![](images/Banner.png)
 
-A small Application with the purpose to enhance my daily-office-work. The Application provides functionalities
-to merge multiple PDFs. Multiple interactions with each PDF are possible e.g. specifying
-the range of Pages who should be included in the final PDF.
-The final PDF can be previewed.
+A small application for merging multiple PDFs.
+Various functions, such as specifying the pages included in the output PDF, have been implemented
+with the aim of improving its usability. A preview of the final PDF can be viewed at any time.
 
 # Functionality
 
@@ -33,7 +32,7 @@ The final PDF can be previewed.
   <ul>
   <li>Granular definition of the pages who should be included.</li>
   <li>Delete or switch the currently selected PDF</li>
-  <li>Highlight the Pages of the currently selected PDF in the Preview-Window</li>
+  <li>Highlight the Pages of the currently selected PDF in the preview window</li>
   </ul>
   </td>
   </tr>
@@ -41,16 +40,16 @@ The final PDF can be previewed.
 
 # Technologie
 
-The Application was build with Spring Boot, JavaFX and the library PDFBox.
-The Spring Boot project included its core module, as also the dependency Lombok.
-The components were created with the help of JavaFX and its additional library ControlsFX.
-Due to incompatibilities between ControlsFX and SceneBuilder were all components written and styled through code. FXML was not used.
-Lastly was the library PDFBox from Apache used to read, alter and save the PDF(s).
+The application was built using Spring Boot, JavaFX and PDFBox.
+The Spring Boot project included its core module, as well as the Lombok dependency.
+The components were created using JavaFX and its add-on library ControlsFX.
+Due to incompatibilities between ControlsFX and SceneBuilder, all components were written and styled by code. FXML was not used.
+
 
 # Future Improvements
 
-The future progress for the project can be divided into two parts. Work that could be done to improve the current state,
-as well as new features.
+Future progress on the project can be divided into two areas. Work that could be done to improve the current state,
+and new features.
 
 ## Needs to be done
 - Adding tests

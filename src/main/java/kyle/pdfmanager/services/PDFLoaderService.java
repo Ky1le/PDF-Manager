@@ -44,6 +44,8 @@ public class PDFLoaderService {
             LOGGER.info("File Chooser was closed or selected file does not exist anymore!");
             return null;
         }
+        fileChooser.setInitialDirectory(file.getParentFile());
+
         final PDDocument pdDocument = PDDocument.load(file);
         final String fileName = sanitizeFileName(file.getName());
         final PDDocumentWrapper wrapper = new PDDocumentWrapper(fileName, file.getPath(), pdDocument);
